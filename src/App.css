@@ -1,7 +1,15 @@
 .App {
   text-align: center;
+  padding:20vh 0;
 }
+.App>h1{
 
+  margin-bottom: 0;
+  transform: translateY(40%);
+  display: inline-block;
+  background-color: white;
+
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
