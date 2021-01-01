@@ -1,0 +1,34 @@
+.Nav{
+    font-family: 'Droid Sans', arial, sans-serif;
+    height: 17vh;
+    background-color: rgb(16, 182, 223);
+    position: fixed;
+    top:0;
+    left:0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px 7%;
+    z-index: 100;
+}
+.Nav ul{
+    list-style: none;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    justify-content: space-between;
+}
+.Nav ul{
+    display: flex;
+    box-sizing: border-box;
+}
+.Nav > ul{
+    align-items: center;
+    height: 100%;
+}
+.Nav>ul>li:nth-child(2){
+    height: 100%;
+}
+.Nav ul ul{
+    height: 100%;
+    flex-direction: column;
+}

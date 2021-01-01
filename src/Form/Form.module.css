@@ -1,0 +1,25 @@
+.Form{
+    width: 70%;
+    margin:auto;
+    border: 0.5px solid rgb(190, 190, 190);
+    padding:5% 2%;
+    border-radius: 7px;
+}
+.Form form > div{
+    margin:2% 6%;
+    width: 88%;
+}
+.Form form .Half{
+    width: 40%;
+    margin: 2% 4%;
+    display: inline-block;
+}
+@media screen and (max-width:600px){
+    .Form{
+        width:90%;
+    }
+    .Form form .Half{
+        width: 88%;
+        margin:2% 6%;
+    }
+}
