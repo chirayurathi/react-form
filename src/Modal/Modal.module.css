@@ -1,0 +1,34 @@
+.Modal{
+    position: fixed;
+    top:0;
+    left:0;
+    background-color: rgba(0, 0, 0, 0.425);
+    z-index: 1000;
+    width: 100%;
+    height:100%;
+}
+.Content{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: left;
+    overflow-y: scroll;
+}
+.Overflow{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 17px;
+    overflow: hidden;
+}
+.Content h1{
+    text-align:center;
+}
+::-webkit-scrollbar{
+    display: hidden;
+}

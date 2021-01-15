@@ -1,6 +1,7 @@
 import './App.css';
 import Nav from './Nav/Nav';
 import Form from './Form/Form'
+import Modal from './Modal/Modal'
 import React, { Component } from 'react'
 import axios from 'axios'
 class App extends Component {
@@ -28,6 +29,8 @@ class App extends Component {
       PersonalEmail:''
     },
     submitted:false,
+    checked:false,
+    modal:false,
     error:{
       email:false,
       BusinessName:false,
@@ -46,6 +49,15 @@ class App extends Component {
     let copy = {...this.state.form}
     copy[tag] = e.target.value
     this.setState({form:copy})
+  }
+  ModalHandler = (e)=>{
+    if(e){
+      e.preventDefault();
+    }
+    this.setState({modal:!this.state.modal})
+  }
+  checkedHandler = ()=>{
+    this.setState({checked:!this.state.checked})
   }
   submitHandler = (e)=>{
     e.preventDefault()
@@ -72,6 +84,7 @@ class App extends Component {
       }
     }
     this.setState({error:errorCopy})
+    if(this.state.checked)
     if(!flag){
       axios.post(`https://esowcarpet-default-rtdb.firebaseio.com/form.json`, this.state.form )
       .then(res => {
@@ -91,7 +104,8 @@ class App extends Component {
       <div className="App">
         <Nav/>
         <h1>Shop Registration</h1>
-        {this.state.submitted?<div><h1>Your Response has been submitted</h1></div>:<Form error={this.state.error} form={this.state.form} submit={this.submitHandler} changeHandler={this.changeHandler}/>}
+        {this.state.submitted?<div><h1>Your Response has been submitted</h1></div>:<Form error={this.state.error} ModalHandler={this.ModalHandler} form={this.state.form} checked={this.state.checked} checkedHandler={this.checkedHandler} submit={this.submitHandler} changeHandler={this.changeHandler}/>}
+      {this.state.modal?<Modal ModalHandler={this.ModalHandler} />:null}
       </div>
     );
   }

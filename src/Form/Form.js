@@ -2,6 +2,8 @@ import React from 'react'
 import Style from './Form.module.css'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import Checkbox from '@material-ui/core/Checkbox'
+import Link from '@material-ui/core/Link'
 const Form = (props)=>{
     return(
         <div className={Style.Form}>
@@ -58,6 +60,10 @@ const Form = (props)=>{
                 </div>
                 <TextField fullWidth id="search" error={props.error["Search"]} required onChange={(e)=>{props.changeHandler(e,"Search")}} value={props.form.Search} label="People Search for you (List out with Comma Separation.)" variant="outlined" />
                 <TextField fullWidth id="comments" onChange={(e)=>{props.changeHandler(e,"comments")}} value={props.form.comments} label="Comments" variant="outlined" multiline rows={3} />
+                <div>    
+                    <Checkbox checked={props.checked} onChange={(e)=>{props.checkedHandler()}} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
+                    <Link component="button" variant="body2" onClick={(e) => {props.ModalHandler(e) }} > Terms And Conitions </Link>
+                </div>
                 <Button variant="contained" color="primary" onClick={(e)=>{props.submit(e)}}>Submit Response</Button>
             </form>
         </div>
