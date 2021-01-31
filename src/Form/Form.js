@@ -4,9 +4,32 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 const Form = (props)=>{
+    const upload = ()=>{
+        let imag = document.querySelector('#image')
+        if(imag.files[0]){
+            for(let i=0;i<imag.files.length;i++)
+                props.uploadImgHandler(imag.files[i])
+        }
+        else{
+            return null;
+        }
+    }
+    const uploadVid = ()=>{
+        let imag = document.querySelector('#video')
+        if(imag.files[0]){
+            for(let i=0;i<imag.files.length;i++)
+                props.uploadVidHandler(imag.files[i])
+        }
+        else{
+            return null;
+        }
+    }
     return(
         <div className={Style.Form}>
+            <p className={Style.require}> All fields marked '*' are required. </p>
             <form autoComplete="off">
                 <div className={Style.Half}>
                 <TextField fullWidth id="email" error={props.error["email"]} required onChange={(e)=>{props.changeHandler(e,"email")}} value={props.form.email} label="Email Address" variant="outlined" />
@@ -16,10 +39,10 @@ const Form = (props)=>{
                 </div> 
                 <TextField id="baddress" required error={props.error["BusinessAddress"]} onChange={(e)=>{props.changeHandler(e,"BusinessAddress")}} value={props.form.BusinessAddress} fullWidth multiline rows={3} label="Address of the Business" variant="outlined" />
                 <div className={Style.Half}>
-                <TextField fullWidth id="pan" required error={props.error["PAN"]} onChange={(e)=>{props.changeHandler(e,"PAN")}} value={props.form.PAN} label="PAN card" variant="outlined" />
+                <TextField fullWidth id="pan" required error={props.error["PAN"]} onChange={(e)=>{props.changeHandler(e,"PAN")}} value={props.form.PAN} helperText={props.error["PAN"]?"Invalid PAN number":null} label="PAN card" variant="outlined" />
                 </div>
                 <div className={Style.Half}>
-                <TextField fullWidth id="gst" onChange={(e)=>{props.changeHandler(e,"GST")}} value={props.form.GST} label="GST No." variant="outlined" />
+                <TextField fullWidth id="gst" onChange={(e)=>{props.changeHandler(e,"GST")}} error={!props.validGST} value={props.form.GST} label="GST No." helperText="GST no. only starting with 33" variant="outlined" />
                 </div>
                 <div className={Style.Half}>
                 <TextField fullWidth id="name" required error={props.error["PersonName"]} onChange={(e)=>{props.changeHandler(e,"PersonName")}} value={props.form.PersonName} label="Name of the Person" variant="outlined" />
@@ -53,16 +76,39 @@ const Form = (props)=>{
                 <TextField fullWidth id="instagram" onChange={(e)=>{props.changeHandler(e,"Instagram")}} value={props.form.Instagram} label="instagram" variant="outlined" />
                 </div>
                 <div className={Style.Half}>
+                    <div className={Style.Media}>
+                        <label for="video">Upload Video</label>
+                        <input type="file" name="video" id="video" onChange={()=>{uploadVid()}}/>
+                    </div>
+                {/* <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" /> */}
+                </div>
+                <div className={Style.Half}>
                 <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" />
                 </div>
                 <div className={Style.Half}>
-                <TextField fullWidth id="customer" required error={props.error["CustomerProfile"]} onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} value={props.form.CustomerProfile} label="Customer Profile" variant="outlined" />
+                {/* <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" /> */}
+                <div className={Style.Media}>
+                        <label for="image">Upload Images</label>
+                        <input type="file" id="image" name="image" multiple onChange={()=>{upload()}}/>
+                        <span className = {Style.helper}>upload minimum 3 and maximum 5 images</span>
+                    </div>
+                </div>
+                <div className={Style.Half}>
+                {/* <TextField fullWidth id="customer" required error={props.error["CustomerProfile"]} onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} value={props.form.CustomerProfile} label="Customer Profile" variant="outlined" /> */}
+                <Select fullWidth id="customer" label="customer profile" error={props.error["CustomerProfile"]} value={props.form.customerProfile} required onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} variant="outlined">
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    <MenuItem value="Wholesale">Wholesale</MenuItem>
+                    <MenuItem value="semi-wholesale">semi-wholesale</MenuItem>
+                    <MenuItem value="retail">retail</MenuItem>
+                </Select>   
                 </div>
                 <TextField fullWidth id="search" error={props.error["Search"]} required onChange={(e)=>{props.changeHandler(e,"Search")}} value={props.form.Search} label="People Search for you (List out with Comma Separation.)" variant="outlined" />
                 <TextField fullWidth id="comments" onChange={(e)=>{props.changeHandler(e,"comments")}} value={props.form.comments} label="Comments" variant="outlined" multiline rows={3} />
                 <div>    
                     <Checkbox checked={props.checked} onChange={(e)=>{props.checkedHandler()}} color="primary" inputProps={{ 'aria-label': 'secondary checkbox' }} />
                     <Link component="button" variant="body2" onClick={(e) => {props.ModalHandler(e) }} > Terms And Conitions </Link>
+                    {console.log(props.termError)}
+                    <span className={props.termError?Style.term:Style.termerror}>Accept terms and conditions to continue.</span>
                 </div>
                 <Button variant="contained" color="primary" onClick={(e)=>{props.submit(e)}}>Submit Response</Button>
             </form>

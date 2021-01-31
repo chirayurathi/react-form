@@ -1,5 +1,5 @@
 import firebase from 'firebase'
-
+import 'firebase/storage'
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyCclq_Do-yJPl635mqLFGgvKSdpgKEP70M",
@@ -9,10 +9,9 @@ import firebase from 'firebase'
     messagingSenderId: "23667430330",
     appId: "1:23667430330:web:8239c4d4c523c83c328383"
   };
-  class Firebase {
-    constructor() {
-      firebase.initializeApp(firebaseConfig);
-    }
+
+  firebase.initializeApp(firebaseConfig);
+  let storage = firebase.storage()
+  export default{
+    firebase,storage
   }
-   
-  export default Firebase;
