@@ -3,6 +3,7 @@ import Style from './Form.module.css'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import Checkbox from '@material-ui/core/Checkbox'
+import InputLabel from '@material-ui/core/InputLabel'
 import Link from '@material-ui/core/Link'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
@@ -37,7 +38,7 @@ const Form = (props)=>{
                 <div className={Style.Half}>
                 <TextField fullWidth id="bname" required error={props.error["BusinessName"]} onChange={(e)=>{props.changeHandler(e,"BusinessName")}} value={props.form.BusinessName} label="Business Name" variant="outlined" />
                 </div> 
-                <TextField id="baddress" required error={props.error["BusinessAddress"]} onChange={(e)=>{props.changeHandler(e,"BusinessAddress")}} value={props.form.BusinessAddress} fullWidth multiline rows={3} label="Address of the Business" variant="outlined" />
+                <TextField id="baddress" required error={props.error["BusinessAddress"]} helperText="shop no.,market name,street,floor,etc." onChange={(e)=>{props.changeHandler(e,"BusinessAddress")}} value={props.form.BusinessAddress} fullWidth multiline rows={3} label="Address of the Business" variant="outlined" />
                 <div className={Style.Half}>
                 <TextField fullWidth id="pan" required error={props.error["PAN"]} onChange={(e)=>{props.changeHandler(e,"PAN")}} value={props.form.PAN} helperText={props.error["PAN"]?"Invalid PAN number":null} label="PAN card" variant="outlined" />
                 </div>
@@ -80,13 +81,11 @@ const Form = (props)=>{
                         <label for="video">Upload Video</label>
                         <input type="file" name="video" id="video" onChange={()=>{uploadVid()}}/>
                     </div>
-                {/* <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" /> */}
                 </div>
                 <div className={Style.Half}>
                 <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" />
                 </div>
                 <div className={Style.Half}>
-                {/* <TextField fullWidth id="youtube" onChange={(e)=>{props.changeHandler(e,"Youtube")}} value={props.form.Youtube} label="youtube" variant="outlined" /> */}
                 <div className={Style.Media}>
                         <label for="image">Upload Images</label>
                         <input type="file" id="image" name="image" multiple onChange={()=>{upload()}}/>
@@ -94,12 +93,16 @@ const Form = (props)=>{
                     </div>
                 </div>
                 <div className={Style.Half}>
-                {/* <TextField fullWidth id="customer" required error={props.error["CustomerProfile"]} onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} value={props.form.CustomerProfile} label="Customer Profile" variant="outlined" /> */}
-                <Select fullWidth id="customer" label="customer profile" error={props.error["CustomerProfile"]} value={props.form.customerProfile} required onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} variant="outlined">
+                    {console.log(props.form.customerProfile)}
+                    <InputLabel id="demo-mutiple-name-label"><div style={{textAlign:'left'}}>customer profile</div></InputLabel>
+                <Select labelId="demo-mutiple-name-label"  multiple fullWidth id="customer" label="customer profile" error={props.error["CustomerProfile"]} value={props.form.CustomerProfile} required onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} variant="outlined">
                     <MenuItem value=""><em>None</em></MenuItem>
                     <MenuItem value="Wholesale">Wholesale</MenuItem>
                     <MenuItem value="semi-wholesale">semi-wholesale</MenuItem>
+                    <MenuItem value="Manufacture">Manufacture</MenuItem>
+                    <MenuItem value="Distributor">Distributor</MenuItem>
                     <MenuItem value="retail">retail</MenuItem>
+                    <MenuItem value="other">other</MenuItem>
                 </Select>   
                 </div>
                 <TextField fullWidth id="search" error={props.error["Search"]} required onChange={(e)=>{props.changeHandler(e,"Search")}} value={props.form.Search} label="People Search for you (List out with Comma Separation.)" variant="outlined" />

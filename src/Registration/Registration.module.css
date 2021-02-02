@@ -1,0 +1,13 @@
+.Registration {
+    text-align: center;
+    padding:20vh 0;
+  }
+  .Registration>h1{
+    /* position: absolute; */
+    margin-bottom: 0;
+    transform: translateY(40%);
+    top:20;
+    display: inline-block;
+    background-color: white;
+  
+  }

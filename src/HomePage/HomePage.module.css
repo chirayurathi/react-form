@@ -1,0 +1,73 @@
+.HomePage{
+    width: 100%;
+    height: 100vh;
+    margin-top:7vh ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.Text{
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7em;
+    padding: 10%;
+    box-sizing: border-box;
+    font-family: 'Poppins','Sans-serif';
+    font-style:italic ;
+    color: white;
+    overflow: hidden;
+}
+.Text p:nth-child(1){
+    width: 50%;
+    text-align: right;
+    box-sizing: border-box;
+    padding-right:20% ;
+    overflow: hidden;
+    animation: appear 0.7s ease-in 0.2s  forwards ;
+    opacity: 0;
+}
+.Text p:nth-child(2){
+    width: 50%;
+    text-align: left;
+    padding-left:20% ;
+    box-sizing: border-box;
+    overflow: hidden;
+    animation: appear 0.7s ease-in 0.5s  forwards ;
+    opacity: 0;
+}
+.Bottom{
+    position: absolute;
+    top: 95vh;
+    left:0;
+    box-sizing: border-box;
+    height: 5vh;
+    text-align: right;
+    width: 100%;
+    overflow: hidden;
+}
+@keyframes appear{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@media screen and (max-width:900px){
+    .Text{
+        font-size:3em;
+    }
+}
+@media screen and (max-width:500px){
+    .Text{
+        font-size:2em;
+        height: 30vh;
+        padding: 3%;
+    }
+}

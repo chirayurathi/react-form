@@ -23,8 +23,6 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    /* overflow-x: hidden;
-    overflow-y: visible; */
     position: relative;
 }
 .Media label{
@@ -84,6 +82,6 @@
     }
     .Form form .Half{
         width: 88%;
-        margin:2% 6%;
+        margin:6% 6%;
     }
 }
