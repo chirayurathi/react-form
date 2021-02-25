@@ -38,7 +38,27 @@ const Form = (props)=>{
                 <div className={Style.Half}>
                 <TextField fullWidth id="bname" required error={props.error["BusinessName"]} onChange={(e)=>{props.changeHandler(e,"BusinessName")}} value={props.form.BusinessName} label="Business Name" variant="outlined" />
                 </div> 
-                <TextField id="baddress" required error={props.error["BusinessAddress"]} helperText="shop no.,market name,street,floor,etc." onChange={(e)=>{props.changeHandler(e,"BusinessAddress")}} value={props.form.BusinessAddress} fullWidth multiline rows={3} label="Address of the Business" variant="outlined" />
+                <div className={Style.Half}>
+                <TextField fullWidth id="shopno" required error={props.error["ShopNo"]} onChange={(e)=>{props.changeHandler(e,"ShopNo")}} value={props.form.ShopNo} label="ShopNo" variant="outlined" />
+                </div> 
+                <div className={Style.Half}>
+                    <InputLabel id="demo-mutiple-name-label"><div style={{textAlign:'left'}}>Floor No.</div></InputLabel>
+                <Select labelId="demo-mutiple-name-label" fullWidth id="floor" label="Floor No." error={props.error["FloorNo"]} value={props.form.FloorNo} required onChange={(e)=>{props.changeHandler(e,"FloorNo")}} variant="outlined">
+                    <MenuItem value=""><em>None</em></MenuItem>
+                    <MenuItem value="0"><em>0</em></MenuItem>
+                    <MenuItem value="1"><em>1</em></MenuItem>
+                    <MenuItem value="2"><em>2</em></MenuItem>
+                    <MenuItem value="3"><em>3</em></MenuItem>
+                    <MenuItem value="4"><em>4</em></MenuItem>
+                    <MenuItem value="5"><em>5</em></MenuItem>
+                    <MenuItem value="6"><em>6</em></MenuItem>
+                    <MenuItem value="7"><em>7</em></MenuItem>
+                    <MenuItem value="8"><em>8</em></MenuItem>
+                    <MenuItem value="9"><em>9</em></MenuItem>
+                    <MenuItem value="10"><em>10</em></MenuItem>
+                </Select>   
+                </div>
+                <TextField id="baddress" required error={props.error["BusinessAddress"]} helperText="market name,street,landmark,etc." onChange={(e)=>{props.changeHandler(e,"BusinessAddress")}} value={props.form.BusinessAddress} fullWidth multiline rows={3} label="Address of the Business" variant="outlined" />
                 <div className={Style.Half}>
                 <TextField fullWidth id="pan" required error={props.error["PAN"]} onChange={(e)=>{props.changeHandler(e,"PAN")}} value={props.form.PAN} helperText={props.error["PAN"]?"Invalid PAN number":null} label="PAN card" variant="outlined" />
                 </div>
@@ -93,7 +113,6 @@ const Form = (props)=>{
                     </div>
                 </div>
                 <div className={Style.Half}>
-                    {console.log(props.form.customerProfile)}
                     <InputLabel id="demo-mutiple-name-label"><div style={{textAlign:'left'}}>customer profile</div></InputLabel>
                 <Select labelId="demo-mutiple-name-label"  multiple fullWidth id="customer" label="customer profile" error={props.error["CustomerProfile"]} value={props.form.CustomerProfile} required onChange={(e)=>{props.changeHandler(e,"CustomerProfile")}} variant="outlined">
                     <MenuItem value=""><em>None</em></MenuItem>

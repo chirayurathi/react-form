@@ -9,6 +9,8 @@ class Registration extends Component {
     form:{
       email:'',
       BusinessName:'',
+      FloorNo:'',
+      ShopNo:'',
       BusinessAddress:'',
       PAN:'',
       GST:'',
@@ -48,7 +50,9 @@ class Registration extends Component {
       BusinessType:false,
       CustomerProfile:false,
       Search:false,
-      Pincode:false
+      Pincode:false,
+      FloorNo:false,
+      ShopNo:false
     }
   }
   changeHandler = (e,tag)=>{
